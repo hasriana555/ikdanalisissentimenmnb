@@ -11,7 +11,7 @@ import nltk
 # KONFIGURASI HALAMAN
 # =============================================
 st.set_page_config(
-    page_title="SVM",
+    page_title="MNB",
     page_icon="📱",
     layout="centered"
 )
