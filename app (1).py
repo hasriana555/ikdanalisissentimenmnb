@@ -11,7 +11,7 @@ import nltk
 # KONFIGURASI HALAMAN
 # =============================================
 st.set_page_config(
-    page_title="Analisis Sentimen IKD",
+    page_title="SVM",
     page_icon="📱",
     layout="centered"
 )
@@ -21,8 +21,8 @@ st.set_page_config(
 # =============================================
 @st.cache_resource
 def load_model():
-    model = joblib.load('model_mnb_finak.pkl')
-    tfidf = joblib.load('tfidf_vectorizer(1).pkl')
+    model = joblib.load('model_mnb_final.pkl')
+    tfidf = joblib.load('tfidf_vectorizer.pkl')
     return model, tfidf
 
 @st.cache_resource
@@ -104,11 +104,11 @@ stemmer, all_sw, slang = load_preprocessing_tools()
 # =============================================
 # TAMPILAN
 # =============================================
-st.title("📱 MNB")
+st.title("📱 Analisis Sentimen Ulasan Pengguna Aplikasi IKD")
 st.markdown(
     "Prediksi sentimen ulasan pengguna aplikasi "
     "**Identitas Kependudukan Digital (IKD)** menggunakan "
-    "algoritma **Support Vector Machine (SVM)**."
+    "algoritma **Multinomial Naive Bayes (MNB)**."
 )
 
 st.divider()
