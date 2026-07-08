@@ -21,8 +21,8 @@ st.set_page_config(
 # =============================================
 @st.cache_resource
 def load_model():
-    model = joblib.load('model_svm.pkl')
-    tfidf = joblib.load('tfidf_vectorizer.pkl')
+    model = joblib.load('model_mnb_finak.pkl')
+    tfidf = joblib.load('tfidf_vectorizer(1).pkl')
     return model, tfidf
 
 @st.cache_resource
@@ -197,19 +197,19 @@ st.divider()
 # ===== INFO MODEL =====
 st.subheader("📈 Performa Model SVM")
 col1, col2, col3, col4 = st.columns(4)
-col1.metric("Akurasi",  "89.36%")
-col2.metric("Presisi",  "90.28%")
-col3.metric("Recall",   "81.59%")
-col4.metric("F1-Score", "85.71%")
+col1.metric("Akurasi",  "88.85%")
+col2.metric("Presisi",  "93.17%")
+col3.metric("Recall",   "81.37%")
+col4.metric("F1-Score", "86.87%")
 
 st.divider()
 
 # ===== INFO DATASET =====
 st.subheader("📂 Informasi Dataset")
 col1, col2, col3 = st.columns(3)
-col1.metric("Total Data",   "3.055")
-col2.metric("Positif",      "1.195")
-col3.metric("Negatif",      "1.860")
+col1.metric("Total Data",   "6.096")
+col2.metric("Positif",      "2.763")
+col3.metric("Negatif",      "3.333")
 
 st.caption(
     "Data diambil dari Google Play Store aplikasi IKD "
