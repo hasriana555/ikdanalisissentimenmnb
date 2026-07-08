@@ -145,6 +145,15 @@ if prediksi_btn:
                 hasil          = model.predict(teks_tfidf)[0]
                 decision_score = model.decision_function(teks_tfidf)[0]
 
+            if teks_tfidf.nnz == 0:
+                st.warning(
+                    "⚠️ Ulasan tidak dapat diprediksi karena tidak mengandung kata yang dikenali oleh model."
+                )
+                st.stop()
+
+                hasil = model.predict(teks_tfidf)[0]
+                decision_score = model.decision_function(teks_tfidf)[0]
+
                 # Konversi ke confidence score
                 if hasil == 'Positif':
                     conf_positif = konversi_confidence(decision_score)
