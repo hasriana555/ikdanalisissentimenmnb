@@ -104,7 +104,7 @@ stemmer, all_sw, slang = load_preprocessing_tools()
 # =============================================
 # TAMPILAN
 # =============================================
-st.title("📱 Analisis Sentimen Ulasan Aplikasi IKD")
+st.title("📱 MNB")
 st.markdown(
     "Prediksi sentimen ulasan pengguna aplikasi "
     "**Identitas Kependudukan Digital (IKD)** menggunakan "
