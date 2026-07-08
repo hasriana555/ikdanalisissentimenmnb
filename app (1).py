@@ -204,7 +204,7 @@ if prediksi_btn:
 st.divider()
 
 # ===== INFO MODEL =====
-st.subheader("📈 Performa Model SVM")
+st.subheader("📈 Performa Model MNB")
 col1, col2, col3, col4 = st.columns(4)
 col1.metric("Akurasi",  "88.85%")
 col2.metric("Presisi",  "93.17%")
