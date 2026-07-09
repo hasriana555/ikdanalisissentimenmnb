@@ -142,27 +142,27 @@ if prediksi_btn:
                 st.error("❌ Teks tidak dapat diproses. Coba masukkan ulasan yang lebih lengkap.")
             else:
                 teks_tfidf     = tfidf.transform([teks_bersih])
-                hasil          = model.predict(teks_tfidf)[0]
-                decision_score = model.decision_function(teks_tfidf)[0]
+                hasil = model.predict(teks_tfidf)[0]
 
-                if teks_tfidf.nnz == 0:
-                    st.warning(
-                        "⚠️ Ulasan tidak dapat diprediksi karena tidak mengandung kata yang dikenali oleh model."
-                    )
-                    st.stop()
+                # probabilitas tiap kelas
+                prob = model.predict_proba(teks_tfidf)[0]
 
-                    hasil = model.predict(teks_tfidf)[0]
-                    decision_score = model.decision_function(teks_tfidf)[0]
+                # urutan kelas pada model
+                kelas = model.classes_
 
-                # Konversi ke confidence score
-                if hasil == 'Positif':
-                    conf_positif = konversi_confidence(decision_score)
-                    conf_negatif = 100 - conf_positif
+                # ambil probabilitas positif & negatif
+                if "Positif" in kelas:
+                    idx_pos = list(kelas).index("Positif")
+                    idx_neg = list(kelas).index("Negatif")
                 else:
-                    conf_negatif = konversi_confidence(abs(decision_score))
-                    conf_positif = 100 - conf_negatif
+                    # jika label menggunakan angka
+                    idx_pos = 1
+                    idx_neg = 0
 
-                conf_utama = conf_positif if hasil == 'Positif' else conf_negatif
+                conf_positif = prob[idx_pos] * 100
+                conf_negatif = prob[idx_neg] * 100
+                
+                conf_utama = max(conf_positif, conf_negatif)
 
                 st.divider()
                 st.subheader("📊 Hasil Prediksi")
